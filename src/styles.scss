@@ -4,10 +4,22 @@ form {
   @apply space-y-4;
 
   input {
-    @apply bg-black/3 p-2 h-10 border border-black/50;
+    @apply bg-black/3 p-2 h-10 border border-black/50 rounded-lg;
   }
 }
 
 .btn-primary {
-  @apply h-10 bg-orange-500 text-white font-[500] flex justify-center items-center border border-orange-500 hover:bg-transparent hover:text-orange-500;
+  @apply h-10 bg-orange-500 text-white font-[500] flex justify-center items-center border border-orange-500 hover:bg-transparent hover:text-orange-500 rounded-lg;
+}
+
+.btn-secondary {
+  @apply h-10 bg-white text-orange-500 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
+}
+
+.active-link {
+  @apply  bg-white text-orange-500 font-[500];
+}
+
+.menu-link {
+  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-orange-500;
 }
