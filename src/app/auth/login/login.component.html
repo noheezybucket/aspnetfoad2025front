@@ -4,15 +4,27 @@
     <p>Accéder à votre espace en quelques clics !</p>
   </div>
 
-  <form class="flex flex-col">
+  <div *ngIf="errorMessage != ''" class="mb-5 w-full">
+    <app-error-message [message]="errorMessage"/>
+  </div>
+
+  <form class="flex flex-col"  [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
     <label class="flex flex-col">
       <span>Nom d'utilisateur</span>
-      <input type="text" placeholder="Votre nom d'utilisateur">
+      <input
+        type="text"
+        placeholder="Votre nom d'utilisateur"
+        formControlName="username"
+      />
     </label>
 
     <label class="flex flex-col">
       <span>Mot de passe</span>
-      <input type="password" placeholder="Votre mot de passe" >
+      <input
+        type="password"
+        placeholder="Votre mot de passe"
+        formControlName="password"
+      />
     </label>
     <p>Mot de passe oublié ? <a routerLink="/auth/register" class="text-blue-500">Changez le ici</a> </p>
 

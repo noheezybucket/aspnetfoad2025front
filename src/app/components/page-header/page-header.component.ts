@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
@@ -6,7 +6,12 @@ import {Component, Input} from '@angular/core';
   templateUrl: './page-header.component.html',
   styleUrl: './page-header.component.scss'
 })
-export class PageHeaderComponent {
+export class PageHeaderComponent implements OnInit {
   @Input() title: string = '';
+  user!:any
+
+  ngOnInit() {
+    this.user = JSON.parse(<string>localStorage.getItem('user'))
+  }
 
 }

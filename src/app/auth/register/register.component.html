@@ -20,12 +20,20 @@
 
     <label class="flex flex-col">
       <span>Email</span>
-      <input type="email" placeholder="Votre email" formControlName="email">
+      <input
+        type="email"
+        placeholder="Votre email"
+        formControlName="email"
+      />
     </label>
 
     <label class="flex flex-col">
       <span>Mot de passe</span>
-      <input type="password" placeholder="Votre mot de passe" formControlName="password" >
+      <input
+        type="password"
+        placeholder="Votre mot de passe"
+        formControlName="password"
+      />
     </label>
     @if (loading) {
       <button [disabled]="true" class="btn-secondary" disabled>

@@ -11,4 +11,9 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 })
 export class SidebarComponent {
 
+  logout() {
+    localStorage.removeItem('user');
+    window.location.reload();
+  }
+
 }
