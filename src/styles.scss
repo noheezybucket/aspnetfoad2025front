@@ -1,5 +1,8 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');@import "tailwindcss";
 
+*, *:before, *:after {
+  font-family: "Work Sans", sans-serif;
+}
 form {
   @apply space-y-4;
 
@@ -9,17 +12,17 @@ form {
 }
 
 .btn-primary {
-  @apply h-10 bg-orange-500 text-white font-[500] flex justify-center items-center border border-orange-500 hover:bg-transparent hover:text-orange-500 rounded-lg;
+  @apply h-10 bg-blue-500 text-white font-[500] flex justify-center items-center border border-blue-500 hover:bg-transparent hover:text-blue-500 rounded-lg;
 }
 
 .btn-secondary {
-  @apply h-10 bg-white text-orange-500 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
+  @apply h-10 bg-white text-blue-500 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
 }
 
 .active-link {
-  @apply  bg-white text-orange-500 font-[500];
+  @apply  bg-white text-blue-500 font-[500];
 }
 
 .menu-link {
-  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-orange-500;
+  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-blue-500;
 }
