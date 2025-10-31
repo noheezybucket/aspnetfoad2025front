@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+form {
+  @apply space-y-4;
+
+  input {
+    @apply bg-black/3 p-2 h-10 border border-black/50;
+  }
+}
+
+.btn-primary {
+  @apply h-10 bg-orange-500 text-white font-[500] flex justify-center items-center border border-orange-500 hover:bg-transparent hover:text-orange-500;
+}
