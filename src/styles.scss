@@ -12,11 +12,11 @@ form {
 }
 
 .btn-primary {
-  @apply h-10 bg-blue-500 text-white font-[500] flex justify-center items-center border border-blue-500 hover:bg-transparent hover:text-blue-500 rounded-lg;
+  @apply cursor-pointer h-10 bg-blue-500 text-white font-[500] flex justify-center items-center border border-blue-500 hover:bg-transparent hover:text-blue-500 rounded-lg;
 }
 
 .btn-secondary {
-  @apply h-10 bg-white text-blue-500 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
+  @apply cursor-pointer h-10 bg-white text-blue-500 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
 }
 
 .active-link {
