@@ -20,4 +20,8 @@ export class AuthService {
   login(payload : any):Observable<any>{
     return this.http.post(`${this.baseUrl}/login`, payload)
   }
+
+  logout() {
+    localStorage.removeItem('user');
+  }
 }

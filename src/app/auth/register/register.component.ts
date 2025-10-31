@@ -46,7 +46,6 @@ export class RegisterComponent {
         error => {
           console.log(error);
           this.errorMessage = "Une erreur s'est produite";
-          this.registerForm.reset();
         }
       )
 
