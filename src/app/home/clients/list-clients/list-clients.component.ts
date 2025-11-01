@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientsService} from '../../../services/clients.service';
 import {RouterLink} from '@angular/router';
+import {LoadingSpinnerComponent} from '../../../components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-list-clients',
   imports: [
-    RouterLink
+    RouterLink,
+    LoadingSpinnerComponent
   ],
   templateUrl: './list-clients.component.html',
 })

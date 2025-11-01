@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {PageHeaderComponent} from "../../../components/page-header/page-header.component";
 import {RouterLink} from "@angular/router";
 import {ColisService} from '../../../services/colis.service';
+import {LoadingSpinnerComponent} from '../../../components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-list-colis',
-    imports: [
-        RouterLink
-    ],
+  imports: [
+    RouterLink,
+    LoadingSpinnerComponent
+  ],
   templateUrl: './list-colis.component.html',
 })
 export class ListColisComponent implements OnInit {
