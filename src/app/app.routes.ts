@@ -14,6 +14,7 @@ import {AddClientsComponent} from './home/clients/add-clients/add-clients.compon
 import {ListLivreursComponent} from './home/livreurs/list-livreurs/list-livreurs.component';
 import {LivreursComponent} from './home/livreurs/livreurs.component';
 import {AddLivreursComponent} from './home/livreurs/add-livreurs/add-livreurs.component';
+import {LivraisonsComponent} from './home/livraisons/livraisons.component';
 
 export const routes: Routes = [
   {
@@ -60,6 +61,10 @@ export const routes: Routes = [
           { path:'add-livreurs', component: AddLivreursComponent },
           { path:'', redirectTo: 'list-livreurs', pathMatch: 'full' },
         ]
+      },
+
+      { path: 'manage-livraisons',
+        component:LivraisonsComponent
       }
 
     ]

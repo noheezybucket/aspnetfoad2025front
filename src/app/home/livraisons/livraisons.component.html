@@ -1,0 +1,81 @@
+<app-page-header title="Livraisons"/>
+
+<div>
+
+  <div *ngIf="errorMessage != ''" class="mb-5 w-full">
+    <app-error-message [message]="errorMessage"/>
+  </div>
+  <form class="grid grid-cols-3 gap-2" [formGroup]="livraisonForm" (ngSubmit)="onSubmit()">
+    <label class="flex flex-col">
+<!--      <span>Choisissez un colis</span>-->
+      <select formControlName="idColis">
+        @for (colis of colisData ; track colis.idColis) {
+          <option [value]="colis.idColis">{{colis.codeColis}} - {{colis.nomclient}} {{colis.prenomclient}}</option>
+        }
+      </select>
+    </label>
+
+    <label class="flex flex-col">
+<!--      <span>Choisissez un livreurs</span>-->
+      <select formControlName="idLivreur">
+        @for (livreur of livreursData ; track livreur.idUsersColis) {
+          <option [value]="livreur.idUsersColis">{{livreur.prenom}} {{livreur.nom}}</option>
+        }
+      </select>
+    </label>
+
+      <button type="submit" class="btn-primary align-self-end ">Ajouter</button>
+
+  </form>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom complet</th>
+      <th>CNI</th>
+      <th>N.Telephone</th>
+      <th>Colis</th>
+      <th>Adresse de départ</th>
+      <th>Statut</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      @if(!loading) {
+        @for (item of livraisonsData ; track item) {
+          <tr>
+            <td>{{item.idLivraison}}</td>
+            <td>{{item.client.prenom}} {{item.client.nom}}</td>
+            <td>{{item.client.cni}}</td>
+            <td>{{item.client.telephone}}</td>
+            <td>{{item.colis.codeColis}} - {{item.colis.poids}} kg</td>
+            <td>{{item.colis.adresseDepart}}</td>
+            <td>{{item.colis.statutLivraison}}</td>
+            <td>
+              <div class="flex gap-2">
+                <a routerLink="" class="btn-more"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></a>
+
+              @if (item.colis.statutLivraison !== "Livré") {
+                <button (click)="finishDelivery(item.idLivraison)" class="btn-done">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                </button>
+              }
+              </div>
+            </td>
+          </tr>
+
+        } @empty {
+          <td colspan="8" class="text-center p-2">Aucun  élément trouvé</td>
+        }
+      } @else {
+        <td colspan="8" class="text-center p-2">
+          <app-loading-spinner/>
+        </td>
+
+      }
+
+    </tbody>
+  </table>
+
+</div>
