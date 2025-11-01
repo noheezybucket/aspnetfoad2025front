@@ -33,6 +33,9 @@ export class LoginComponent {
   onSubmit() {
     this.loading = true;
 
+    const payload = {
+      ...this.loginForm.value
+    }
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         data => {

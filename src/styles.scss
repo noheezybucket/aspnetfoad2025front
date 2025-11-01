@@ -1,28 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');@import "tailwindcss";
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 *, *:before, *:after {
   font-family: "Work Sans", sans-serif;
 }
+
 form {
   @apply space-y-4;
 
   input {
-    @apply bg-black/3 p-2 h-10 border border-black/50 rounded-lg;
+    @apply bg-black/3 dark:bg-white/5 p-2 h-10 border border-black/50 dark:border-white/50 rounded-lg;
   }
 }
 
 .btn-primary {
-  @apply cursor-pointer h-10 bg-blue-500 text-white font-[500] flex justify-center items-center border border-blue-500 hover:bg-transparent hover:text-blue-500 rounded-lg;
+  @apply cursor-pointer duration-200 ease-in-out h-10 px-2 bg-blue-600 text-white font-[500] flex justify-center items-center border border-blue-600 hover:bg-transparent hover:text-blue-600 rounded-lg;
+}
+
+.btn-delete {
+  @apply cursor-pointer duration-200 ease-in-out h-10 px-2 bg-red-600 text-white font-[500] flex justify-center items-center border border-red-600 hover:bg-transparent hover:text-red-600 rounded-lg;
+}
+
+.btn-edit {
+  @apply cursor-pointer duration-200 ease-in-out h-10 px-2 bg-orange-500 text-white font-[500] flex justify-center items-center border border-orange-500 hover:bg-transparent hover:text-orange-500 rounded-lg;
 }
 
 .btn-secondary {
-  @apply cursor-pointer h-10 bg-white text-blue-500 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
+  @apply cursor-pointer duration-200 ease-in-out h-10 bg-white text-blue-600 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
 }
 
 .active-link {
-  @apply  bg-white text-blue-500 font-[500];
+  @apply  bg-white text-blue-600 font-[500];
 }
 
 .menu-link {
-  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-blue-500;
+  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-blue-600 duration-250;
 }
+
+table {
+  @apply w-full border-collapse;
+
+  td,th {
+    @apply border p-2;
+  }
+
+  th{
+    @apply bg-blue-600 text-white font-[500] border-blue-600;
+  }
+}
+
+input {
+  @apply bg-black/3 dark:bg-white/5 p-2 h-10 border border-black/50 dark:border-white/50 rounded-lg;
+}
+
+#map { height: 180px; }

@@ -8,13 +8,14 @@
    <div>
      <ul class="space-y-2 text-white">
        <li>
-         <a routerLink="" routerLinkActive="active-link" class="menu-link">Dashboard</a>
-       </li>
-       <li>
-         <a routerLink="users" routerLinkActive="active-link" class="menu-link">Utilisateurs</a>
+         <a routerLink="/dashboard" routerLinkActive="active-link" class="menu-link" [routerLinkActiveOptions]="{ exact: true }"
+         >Dashboard</a>
        </li>
        <li>
          <a routerLink="colis" routerLinkActive="active-link" class="menu-link">Colis</a>
+       </li>
+       <li>
+         <a routerLink="users" routerLinkActive="active-link" class="menu-link">Clients</a>
        </li>
        <li>
          <a routerLink="followup" routerLinkActive="active-link" class="menu-link">Suivi Demandes</a>
