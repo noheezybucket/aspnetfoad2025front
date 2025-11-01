@@ -12,13 +12,25 @@ import {ColisService} from '../../../services/colis.service';
 })
 export class ListColisComponent implements OnInit {
   colisData!: any;
+  loading = false;
 
   constructor(
     private colisService:ColisService
   ) {}
 
   ngOnInit() {
-    this.colisData = this.colisService.getAllColis()
-    console.log(this.colisData)
+    this.loading = true;
+    this.colisData = this.colisService.getAllColis().subscribe(
+      res => {
+        this.colisData = res
+        console.log(this.colisData)
+        this.loading = false;
+      },
+      err => {
+        console.log(err)
+        this.colisData=[];
+        this.loading = false;
+      }
+    )
   }
 }
