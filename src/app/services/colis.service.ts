@@ -18,4 +18,8 @@ export class ColisService {
   getAllColis(){
     return this.http.get<any>(`${this.baseUrl}`, {headers: this.headers});
   }
+
+  createColis(payload:any){
+    return this.http.post<any>(`${this.baseUrl}`, payload, {headers: this.headers});
+  }
 }

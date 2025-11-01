@@ -2,41 +2,44 @@
   <div *ngIf="errorMessage != ''" class="mb-5 w-full">
     <app-error-message [message]="errorMessage"/>
   </div>
+
   <form class="gap-5" [formGroup]="colisForm" (ngSubmit)="onColisAdd()">
     <div class="grid grid-cols-2 gap-5">
       <label class="flex flex-col">
-      <span>Code</span>
-      <input
-        type="text"
-        placeholder="Code colis"
-        formControlName="codeColis"
-      />
+      <span>Choisissez client</span>
+        <select formControlName="idClient">
+          @for (client of clients ; track client.idUsersColis) {
+            <option [value]="client.idUsersColis">{{client.prenom}} {{client.nom}}</option>
+          }
+        </select>
       </label>
 
       <label class="flex flex-col">
-        <span>Libelle</span>
+        <span>Adresse de départ</span>
         <input
           type="text"
-          placeholder="Libelle colis"
-          formControlName="libelleColis"
+          placeholder="Adresse de départ"
+          formControlName="adresseDepart"
         />
       </label>
+
+      <label class="flex flex-col">
+        <span>Adresse d'arrivée</span>
+        <input
+          type="text"
+          placeholder="Adresse d'arrivée"
+          formControlName="adresseArrivee"
+        />
+      </label>
+
+
 
       <label class="flex flex-col">
         <span>Poids</span>
         <input
           type="text"
           placeholder="Poids (kg)"
-          formControlName="poidsColis"
-        />
-      </label>
-
-      <label class="flex flex-col">
-        <span>Type</span>
-        <input
-          type="text"
-          placeholder="Type"
-          formControlName="typeColis"
+          formControlName="poids"
         />
       </label>
 
@@ -45,7 +48,7 @@
         <textarea
           type="text"
           placeholder="Description"
-          formControlName="descriptionColis"
+          formControlName="description"
           rows="10"
         ></textarea>
       </label>

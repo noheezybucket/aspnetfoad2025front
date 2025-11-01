@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ErrorMessageComponent} from '../../../components/error-message/error-message.component';
 import {NgIf} from '@angular/common';
+import {ColisService} from '../../../services/colis.service';
+import {ClientsService} from '../../../services/clients.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-colis',
@@ -12,21 +15,53 @@ import {NgIf} from '@angular/common';
   ],
   templateUrl: './add-edit-colis.component.html',
 })
-export class AddEditColisComponent {
+export class AddEditColisComponent implements OnInit {
 
   colisForm = new FormGroup({
-    codeColis: new FormControl('', [Validators.required]),
-    libelleColis: new FormControl('', [Validators.required]),
-    poidsColis: new FormControl('', [Validators.required]),
-    descriptionColis: new FormControl('', [Validators.required]),
-    typeColis: new FormControl('', [Validators.required]),
+    idClient: new FormControl(null, [Validators.required]),
+    adresseDepart: new FormControl("", [Validators.required]),
+    adresseArrivee: new FormControl("", [Validators.required]),
+    poids: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
   })
-
   errorMessage = "";
+  clients!:any
+  loading = false;
+
+  constructor(
+    private colisService: ColisService,
+    private clientsService:ClientsService,
+    private router: Router,
+  ) {}
+
+  ngOnInit() {
+    this.loading = true;
+
+    this.clientsService.listAllClients().subscribe(
+      res => {
+        this.clients = res.filter((user: any) => user.role === 'Client');
+        this.loading = false;
+      },
+      err => {
+        console.log(err)
+        this.loading = false;
+      }
+    )
+  }
+
 
   onColisAdd() {
+
     if(this.colisForm.valid) {
-      console.log(this.colisForm.value);
+      this.colisService.createColis(this.colisForm.value).subscribe(
+        () => {
+          this.router.navigate(['/colis']);
+        },
+        err => {
+          this.errorMessage = "Une erreur est survenue lors de la création du colis";
+
+        }
+      )
     } else {
       this.errorMessage = "Vérifier vos entrées";
     }

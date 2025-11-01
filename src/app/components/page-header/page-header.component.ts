@@ -20,4 +20,9 @@ export class PageHeaderComponent implements OnInit {
     document.documentElement.classList.toggle('dark');
   }
 
+  logout() {
+    localStorage.removeItem('user');
+    window.location.reload();
+  }
+
 }
