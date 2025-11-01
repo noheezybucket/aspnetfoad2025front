@@ -1,13 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {ColisService} from '../../services/colis.service';
+import {Component} from '@angular/core';
 import {PageHeaderComponent} from '../../components/page-header/page-header.component';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import { RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-colis',
   imports: [
     PageHeaderComponent,
-    RouterLink,
     RouterOutlet
   ],
   templateUrl: './colis.component.html',

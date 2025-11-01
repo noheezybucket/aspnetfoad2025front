@@ -8,6 +8,8 @@ import {AuthGuard} from './guards/auth.guard';
 import {ColisComponent} from './home/colis/colis.component';
 import {ListColisComponent} from './home/colis/list-colis/list-colis.component';
 import {AddEditColisComponent} from './home/colis/add-edit-colis/add-edit-colis.component';
+import {ClientsComponent} from './home/clients/clients.component';
+import {ListClientsComponent} from './home/clients/list-clients/list-clients.component';
 
 export const routes: Routes = [
   {
@@ -26,13 +28,25 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path:'dashboard', component: DashboardComponent },
-      { path:'colis', component: ColisComponent, children:[
-        { path:'list-colis', component: ListColisComponent },
-        { path:'create', component: AddEditColisComponent },
-          { path: '', redirectTo: 'list-colis', pathMatch: 'full' },
 
-        ] },
+      { path:'dashboard', component: DashboardComponent },
+
+      { path:'colis',
+        component: ColisComponent,
+        children:[
+          { path:'list-colis', component: ListColisComponent },
+          { path:'create', component: AddEditColisComponent },
+          { path: '', redirectTo: 'list-colis', pathMatch: 'full' },
+        ]
+      },
+
+      { path: 'clients',
+        component:ClientsComponent,
+        children:[
+          { path:'list-clients', component: ListClientsComponent },
+          { path:'', redirectTo: 'list-clients', pathMatch: 'full' },
+        ]
+      }
 
     ]
   }

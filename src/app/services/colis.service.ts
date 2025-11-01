@@ -79,39 +79,7 @@ export class ColisService {
       descriptionColis: "Gants, gourde, corde à sauter",
       poidsColis: "2.0 kg",
       typeColis: "Sport",
-    },
-    {
-      idColis: 10,
-      codeColis: "CO10",
-      libelleColis: "Cadeaux divers",
-      descriptionColis: "Petits articles de décoration",
-      poidsColis: "1.5 kg",
-      typeColis: "Divers",
-    },
-    {
-      idColis: 10,
-      codeColis: "CO10",
-      libelleColis: "Cadeaux divers",
-      descriptionColis: "Petits articles de décoration",
-      poidsColis: "1.5 kg",
-      typeColis: "Divers",
-    },
-    {
-      idColis: 10,
-      codeColis: "CO10",
-      libelleColis: "Cadeaux divers",
-      descriptionColis: "Petits articles de décoration",
-      poidsColis: "1.5 kg",
-      typeColis: "Divers",
-    },
-    {
-      idColis: 10,
-      codeColis: "CO10",
-      libelleColis: "Cadeaux divers",
-      descriptionColis: "Petits articles de décoration",
-      poidsColis: "1.5 kg",
-      typeColis: "Divers",
-    },
+    }
   ];
 
   constructor(

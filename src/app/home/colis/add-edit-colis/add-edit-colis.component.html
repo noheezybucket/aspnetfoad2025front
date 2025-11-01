@@ -1,1 +1,56 @@
-<p>add-edit-colis works!</p>
+<div class="spacey-y-5">
+  <div *ngIf="errorMessage != ''" class="mb-5 w-full">
+    <app-error-message [message]="errorMessage"/>
+  </div>
+  <form class="gap-5" [formGroup]="colisForm" (ngSubmit)="onColisAdd()">
+    <div class="grid grid-cols-2 gap-5">
+      <label class="flex flex-col">
+      <span>Code</span>
+      <input
+        type="text"
+        placeholder="Code colis"
+        formControlName="codeColis"
+      />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Libelle</span>
+        <input
+          type="text"
+          placeholder="Libelle colis"
+          formControlName="libelleColis"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Poids</span>
+        <input
+          type="text"
+          placeholder="Poids (kg)"
+          formControlName="poidsColis"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Type</span>
+        <input
+          type="text"
+          placeholder="Type"
+          formControlName="typeColis"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Description</span>
+        <textarea
+          type="text"
+          placeholder="Description"
+          formControlName="descriptionColis"
+          rows="10"
+        ></textarea>
+      </label>
+    </div>
+
+    <button type="submit" class="btn-primary">Créer</button>
+  </form>
+</div>

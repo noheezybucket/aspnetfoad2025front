@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://venenose-subaveragely-ryann.ngrok-free.dev",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
