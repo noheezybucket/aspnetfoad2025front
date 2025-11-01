@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientsService {
+export class LivreursService {
   private baseUrl = `${environment.apiUrl}/UsersColis`;
   private headers = new HttpHeaders({
     'ngrok-skip-browser-warning': 'true'
@@ -14,11 +14,11 @@ export class ClientsService {
 
   constructor(private http: HttpClient) { }
 
-  listAllClients(): Observable<any> {
+  listAllLivreurs(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}`, {headers: this.headers});
   }
 
-  createClient(client: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/client`, client, {headers: this.headers});
+  createLivreur(livreur: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/livreur`, livreur, {headers: this.headers});
   }
 }

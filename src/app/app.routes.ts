@@ -10,6 +10,10 @@ import {ListColisComponent} from './home/colis/list-colis/list-colis.component';
 import {AddEditColisComponent} from './home/colis/add-edit-colis/add-edit-colis.component';
 import {ClientsComponent} from './home/clients/clients.component';
 import {ListClientsComponent} from './home/clients/list-clients/list-clients.component';
+import {AddClientsComponent} from './home/clients/add-clients/add-clients.component';
+import {ListLivreursComponent} from './home/livreurs/list-livreurs/list-livreurs.component';
+import {LivreursComponent} from './home/livreurs/livreurs.component';
+import {AddLivreursComponent} from './home/livreurs/add-livreurs/add-livreurs.component';
 
 export const routes: Routes = [
   {
@@ -44,7 +48,17 @@ export const routes: Routes = [
         component:ClientsComponent,
         children:[
           { path:'list-clients', component: ListClientsComponent },
+          { path:'add-clients', component: AddClientsComponent },
           { path:'', redirectTo: 'list-clients', pathMatch: 'full' },
+        ]
+      },
+
+      { path: 'livreurs',
+        component:LivreursComponent,
+        children:[
+          { path:'list-livreurs', component: ListLivreursComponent },
+          { path:'add-livreurs', component: AddLivreursComponent },
+          { path:'', redirectTo: 'list-livreurs', pathMatch: 'full' },
         ]
       }
 

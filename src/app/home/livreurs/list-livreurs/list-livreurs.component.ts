@@ -1,26 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientsService} from '../../../services/clients.service';
+import {LivreursService} from '../../../services/livreurs.service';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-list-clients',
+  selector: 'app-list-livreurs',
   imports: [
     RouterLink
   ],
-  templateUrl: './list-clients.component.html',
+  templateUrl: './list-livreurs.component.html',
 })
-export class ListClientsComponent implements OnInit{
-  clients: any;
+export class ListLivreursComponent implements OnInit{
+
+  livreurs: any;
   loading = false;
 
-  constructor(private clientsService:ClientsService) {}
+  constructor(private livreursService:LivreursService) {}
 
   ngOnInit() {
     this.loading = true;
-    this.clientsService.listAllClients().subscribe(
+    this.livreursService.listAllLivreurs().subscribe(
       res => {
         console.log(res)
-        this.clients = res.filter((user: any) => user.role === 'Client');
+        this.livreurs = res.filter((user: any) => user.role === 'Livreur');
         this.loading = false;
       },
       err => {

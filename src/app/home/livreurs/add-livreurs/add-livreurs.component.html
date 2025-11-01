@@ -1,0 +1,84 @@
+<div class="space-y-5">
+
+  <h2 class="text-2xl font-[500] mb-4">Créer un nouveau livreur</h2>
+
+  <div *ngIf="errorMessage != ''" class="mb-5 w-full">
+    <app-error-message [message]="errorMessage"/>
+  </div>
+
+  <form class="gap-5" [formGroup]="livreurForm" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-2 gap-5">
+
+      <label class="flex flex-col">
+        <span>Nom *</span>
+        <input
+          type="text"
+          placeholder="Entrez le nom"
+          formControlName="nom"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Prénom *</span>
+        <input
+          type="text"
+          placeholder="Entrez le prénom"
+          formControlName="prenom"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>CNI *</span>
+        <input
+          type="text"
+          placeholder="Numéro CNI"
+          formControlName="cni"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>N. Téléphone *</span>
+        <input
+          type="tel"
+          placeholder="Ex: +221 77 123 45 67"
+          formControlName="telephone"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Email *</span>
+        <input
+          type="email"
+          placeholder="exemple@email.com"
+          formControlName="email"
+        />
+      </label>
+
+      <label class="flex flex-col">
+        <span>Adresse *</span>
+        <textarea
+          placeholder="Adresse complète"
+          formControlName="adresse"
+          rows="4"
+        ></textarea>
+      </label>
+
+    </div>
+
+    <div class="flex gap-3 mt-5">
+      <button
+        type="submit"
+        class="btn-primary"
+      >
+        Créer le client
+      </button>
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+      >
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>
