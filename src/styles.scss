@@ -15,7 +15,7 @@ form {
 }
 
 .btn-primary {
-  @apply cursor-pointer duration-200 ease-in-out h-10 px-2 bg-blue-600 text-white font-[500] flex justify-center items-center border border-blue-600 hover:bg-transparent hover:text-blue-600 rounded-lg;
+  @apply cursor-pointer duration-200 ease-in-out h-10 px-2 bg-indigo-600 text-white font-[500] flex justify-center items-center border border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-lg;
 }
 
 .btn-delete {
@@ -27,26 +27,30 @@ form {
 }
 
 .btn-secondary {
-  @apply cursor-pointer duration-200 ease-in-out h-10 bg-white text-blue-600 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
+  @apply cursor-pointer duration-200 ease-in-out h-10 bg-white text-indigo-600 font-[500] flex justify-center items-center border border-white hover:bg-transparent hover:text-white rounded-lg w-full;
 }
 
 .active-link {
-  @apply  bg-white text-blue-600 font-[500];
+  @apply  bg-white text-indigo-600 font-[500];
 }
 
 .menu-link {
-  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-blue-600 duration-250;
+  @apply w-full block rounded-lg p-2 hover:bg-white hover:text-indigo-600 duration-250;
 }
 
 table {
-  @apply w-full border-collapse;
+  @apply w-full border-collapse mt-1;
+
+  thead{
+    @apply rounded;
+  }
 
   td,th {
-    @apply border p-2;
+    @apply border dark:border-white/50  p-2;
   }
 
   th{
-    @apply bg-blue-600 text-white font-[500] border-blue-600;
+    @apply bg-indigo-600 text-white font-[500] border-indigo-600;
   }
 }
 

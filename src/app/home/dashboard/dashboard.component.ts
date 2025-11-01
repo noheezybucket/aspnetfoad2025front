@@ -40,5 +40,8 @@ export class DashboardComponent implements OnInit {
 
     // Fit the map into the boundary
     this.map.fitBounds(bounds);
+
+    this.map.setZoom(this.map.getZoom() - 5);
+
   }
 }

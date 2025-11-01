@@ -1,5 +1,5 @@
-<div class="flex justify-between mb-10">
-  <h1 class="text-4xl font-[500]">{{title}}</h1>
+<div class="flex justify-between mb-10 bg-indigo-600/10 p-2 rounded-lg">
+  <h1 class="text-4xl font-[500] text-indigo-600">{{title}}</h1>
   <div class="flex items-center gap-2">
     <div class="flex items-center gap-2">
       <svg
@@ -33,7 +33,7 @@
           [checked]="isThemeDarkMode"
         />
         <div
-          class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:primary/50 dark:peer-focus:ring-primary/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"
+          class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:primary/50 dark:peer-focus:ring-primary/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600 dark:peer-checked:bg-indigo-600"
         ></div>
       </label>
       <svg
@@ -53,12 +53,14 @@
     </div>
 
     <div class="flex items-center space-x-2 rounded-lg">
-      <span class="block bg-green-500 rounded-full h-3 w-3 border border-2 border-black"></span>
+      <span class="block bg-indigo-600 rounded-full h-8 w-3 border border-1 border-black dark:border-white"></span>
       <span class="font-[500]">{{user?.username}}</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+      <button class="cursor-pointer dark:text-white dark:border-white text-indigo-600 border border-indigo-600 p-1 w-full rounded-lg flex justify-center items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
     </div>
 
-    <button (click)="logout()" class="cursor-pointer text-red-500 border border-white w-full rounded-lg flex justify-center items-center gap-1"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg></button>
+    <button (click)="logout()" class="cursor-pointer text-red-500 border border-red-500 p-1 w-full rounded-lg flex justify-center items-center gap-1"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg></button>
 
   </div>
 
