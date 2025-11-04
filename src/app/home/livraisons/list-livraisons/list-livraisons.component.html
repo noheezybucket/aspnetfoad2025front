@@ -1,30 +1,54 @@
-<div>
+<div class="space-y-5">
 
-  <div *ngIf="errorMessage != ''" class="mb-5 w-full">
-    <app-error-message [message]="errorMessage"/>
+
+  <div class="space-y-2">
+    <div *ngIf="errorMessage != ''" class="mb-5 w-full">
+      <app-error-message [message]="errorMessage"/>
+    </div>
+    <h2 class="text-2xl">Ajouter une nouvelle livraison</h2>
+    <form class="grid grid-cols-3 gap-2" [formGroup]="livraisonForm" (ngSubmit)="onSubmit()">
+      <label class="flex flex-col">
+        <!--      <span>Choisissez un colis</span>-->
+        <select formControlName="idColis">
+          <option value="" disabled selected>Sélectionnez un colis</option>
+
+          @for (colis of colisData ; track colis.idColis) {
+            <option [value]="colis.idColis">{{colis.codeColis}} - {{colis.nomclient}} {{colis.prenomclient}}</option>
+          }
+        </select>
+      </label>
+
+      <label class="flex flex-col">
+        <!--      <span>Choisissez un livreurs</span>-->
+
+        <select formControlName="idLivreur">
+          <option value="" disabled selected>Sélectionnez un livreur</option>
+
+          @for (livreur of livreursData ; track livreur.idUsersColis) {
+            <option [value]="livreur.idUsersColis" *ngIf="livreur.statut === 'Actif'">{{livreur.prenom}} {{livreur.nom}}</option>
+          }
+        </select>
+      </label>
+
+      <button type="submit" class="btn-primary align-self-end ">Ajouter</button>
+
+    </form>
   </div>
-  <form class="grid grid-cols-3 gap-2" [formGroup]="livraisonForm" (ngSubmit)="onSubmit()">
-    <label class="flex flex-col">
-      <!--      <span>Choisissez un colis</span>-->
-      <select formControlName="idColis">
-        @for (colis of colisData ; track colis.idColis) {
-          <option [value]="colis.idColis">{{colis.codeColis}} - {{colis.nomclient}} {{colis.prenomclient}}</option>
-        }
-      </select>
-    </label>
 
-    <label class="flex flex-col">
-      <!--      <span>Choisissez un livreurs</span>-->
-      <select formControlName="idLivreur">
-        @for (livreur of livreursData ; track livreur.idUsersColis) {
-          <option [value]="livreur.idUsersColis">{{livreur.prenom}} {{livreur.nom}}</option>
-        }
-      </select>
-    </label>
 
-    <button type="submit" class="btn-primary align-self-end ">Ajouter</button>
+  <div>
 
-  </form>
+    <div class="flex justify-between">
+      <h2 class="text-2xl">Liste des livraisons</h2>
+      <input
+        type="text"
+        placeholder="Rechercher par code, nom, adresse, statut..."
+        class="border border-gray-300 rounded-lg px-4 py-2 w-96 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+      />
+    </div>
+
 
   <table>
     <thead>
@@ -41,7 +65,7 @@
     </thead>
     <tbody>
       @if(!loading) {
-        @for (item of livraisonsData ; track item) {
+        @for (item of filteredLivraisonData ; track item) {
           <tr>
             <td>{{item.idLivraison}}</td>
             <td>{{item.client.prenom}} {{item.client.nom}}</td>
@@ -78,7 +102,13 @@
           </tr>
 
         } @empty {
-          <td colspan="8" class="text-center p-2">Aucun  élément trouvé</td>
+          <td colspan="8" class="text-center p-2">
+            @if (searchTerm) {
+              Aucun résultat trouvé pour "{{searchTerm}}"
+            } @else {
+              Aucun élément trouvé
+            }
+          </td>
         }
       } @else {
         <td colspan="8" class="text-center p-2">
@@ -89,5 +119,6 @@
 
     </tbody>
   </table>
+  </div>
 
 </div>

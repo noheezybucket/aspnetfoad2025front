@@ -3,7 +3,7 @@ import {ErrorMessageComponent} from "../../../components/error-message/error-mes
 import {LoadingSpinnerComponent} from "../../../components/loading-spinner/loading-spinner.component";
 import {NgIf} from "@angular/common";
 import {PageHeaderComponent} from "../../../components/page-header/page-header.component";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import {ColisService} from '../../../services/colis.service';
 import {LivreursService} from '../../../services/livreurs.service';
@@ -11,19 +11,22 @@ import {LivraisonsService} from '../../../services/livraisons.service';
 
 @Component({
   selector: 'app-list-livraisons',
-    imports: [
-        ErrorMessageComponent,
-        LoadingSpinnerComponent,
-        NgIf,
-        ReactiveFormsModule,
-        RouterLink
-    ],
+  imports: [
+    ErrorMessageComponent,
+    LoadingSpinnerComponent,
+    NgIf,
+    ReactiveFormsModule,
+    RouterLink,
+    FormsModule
+  ],
   templateUrl: './list-livraisons.component.html',
 })
 export class ListLivraisonsComponent implements OnInit {
   colisData!: any;
   livreursData!: any;
+  filteredLivraisonData!: any;
   livraisonsData!: any;
+  searchTerm: string = "";
   loading = true;
   errorMessage = "";
   livraisonForm =  new FormGroup({
@@ -68,6 +71,7 @@ export class ListLivraisonsComponent implements OnInit {
     this.livraisonsService.listAllLivraisons().subscribe(
       res => {
         this.livraisonsData = res;
+        this.filteredLivraisonData = this.livraisonsData;
         console.log(this.livraisonsData);
         this.loading = false
       },
@@ -129,5 +133,26 @@ export class ListLivraisonsComponent implements OnInit {
         alert("Une erreur est survenue lors de la reprise de la livraison, réessayer")
       }
     )
+  }
+
+  onSearch() {
+    const term = this.searchTerm.toLowerCase().trim();
+
+    if (!term) {
+      this.filteredLivraisonData = this.livraisonsData;
+      return;
+    }
+
+    this.filteredLivraisonData = this.livraisonsData.filter((livraison:any) => {
+      return (
+        livraison.colis.codeColis?.toLowerCase().includes(term) ||
+        livraison.client.nom?.toLowerCase().includes(term) ||
+        livraison.client.prenom?.toLowerCase().includes(term) ||
+        `${livraison.client.nom} ${livraison.client.prenom}`.toLowerCase().includes(term) ||
+        livraison.client.telephone?.toLowerCase().includes(term) ||
+        livraison.colis.adresseDepart?.toLowerCase().includes(term) ||
+        livraison.statut?.toLowerCase().includes(term)
+      );
+    });
   }
 }
