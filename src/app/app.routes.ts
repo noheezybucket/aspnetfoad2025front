@@ -17,6 +17,7 @@ import {AddLivreursComponent} from './home/livreurs/add-livreurs/add-livreurs.co
 import {LivraisonsComponent} from './home/livraisons/livraisons.component';
 import {ListLivraisonsComponent} from './home/livraisons/list-livraisons/list-livraisons.component';
 import {DetailsLivraisonComponent} from './home/livraisons/details-livraison/details-livraison.component';
+import {EditColisComponent} from './home/colis/edit-colis/edit-colis.component';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,7 @@ export const routes: Routes = [
         children:[
           { path:'list-colis', component: ListColisComponent },
           { path:'create', component: AddEditColisComponent },
+          { path:'edit/:id', component: EditColisComponent },
           { path: '', redirectTo: 'list-colis', pathMatch: 'full' },
         ]
       },

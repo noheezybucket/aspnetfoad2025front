@@ -19,7 +19,15 @@ export class ColisService {
     return this.http.get<any>(`${this.baseUrl}`, {headers: this.headers});
   }
 
+  getAllColisById(id:any){
+    return this.http.get<any>(`${this.baseUrl}/${id}`, {headers: this.headers});
+  }
+
   createColis(payload:any){
     return this.http.post<any>(`${this.baseUrl}`, payload, {headers: this.headers});
+  }
+
+  updateColis(id:any, payload:any){
+    return this.http.put<any>(`${this.baseUrl}/${id}`, payload, {headers: this.headers});
   }
 }

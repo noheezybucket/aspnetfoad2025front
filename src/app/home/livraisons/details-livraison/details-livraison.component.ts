@@ -7,7 +7,6 @@ import {LoadingSpinnerComponent} from '../../../components/loading-spinner/loadi
 @Component({
   selector: 'app-details-livraison',
   imports: [
-    NgIf,
     LoadingSpinnerComponent,
     DatePipe
   ],
