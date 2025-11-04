@@ -15,6 +15,8 @@ import {ListLivreursComponent} from './home/livreurs/list-livreurs/list-livreurs
 import {LivreursComponent} from './home/livreurs/livreurs.component';
 import {AddLivreursComponent} from './home/livreurs/add-livreurs/add-livreurs.component';
 import {LivraisonsComponent} from './home/livraisons/livraisons.component';
+import {ListLivraisonsComponent} from './home/livraisons/list-livraisons/list-livraisons.component';
+import {DetailsLivraisonComponent} from './home/livraisons/details-livraison/details-livraison.component';
 
 export const routes: Routes = [
   {
@@ -63,8 +65,14 @@ export const routes: Routes = [
         ]
       },
 
-      { path: 'manage-livraisons',
-        component:LivraisonsComponent
+      { path: 'livraisons',
+        component:LivraisonsComponent,
+        children:[
+          {path: "list-livraisons", component: ListLivraisonsComponent },
+          {path: "details-livraison/:id", component: DetailsLivraisonComponent },
+          { path:'', redirectTo: 'list-livraisons', pathMatch: 'full' },
+
+        ]
       }
 
     ]

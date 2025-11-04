@@ -27,5 +27,17 @@ export class LivraisonsService {
     return this.http.patch<any>(`${this.baseUrl}/${id}/terminer`,{headers: this.headers});
   }
 
+  cancelLivraison(id:any){
+    return this.http.patch<any>(`${this.baseUrl}/${id}/annuler`,{headers: this.headers});
+  }
+
+  undoLivraison(id:any){
+    return this.http.patch<any>(`${this.baseUrl}/${id}/reprendre`,{headers: this.headers});
+  }
+
+  getLivraisonById(id:any){
+    return this.http.get<any>(`${this.baseUrl}/${id}`,{headers: this.headers});
+  }
+
 
 }
