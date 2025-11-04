@@ -18,7 +18,15 @@ export class LivreursService {
     return this.http.get<any>(`${this.baseUrl}`, {headers: this.headers});
   }
 
+  getLivreurById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`, {headers: this.headers});
+  }
+
   createLivreur(livreur: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/livreur`, livreur, {headers: this.headers});
+  }
+
+  updateLivreur(id:any, payload: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, payload, {headers: this.headers});
   }
 }

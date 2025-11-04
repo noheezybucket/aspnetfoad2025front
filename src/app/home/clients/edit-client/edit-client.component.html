@@ -76,9 +76,14 @@
     <div class="flex gap-3 mt-5">
       <button
         type="submit"
+        [disabled]="loading"
         class="btn-primary"
       >
-        Modifier le livreur
+        @if (loading) {
+          Requête en cours
+        } @else {
+          Modifier le client
+        }
       </button>
       <button
         type="button"

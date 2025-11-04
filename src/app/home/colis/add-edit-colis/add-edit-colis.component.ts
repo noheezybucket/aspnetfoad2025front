@@ -51,7 +51,7 @@ export class AddEditColisComponent implements OnInit {
 
 
   onColisAdd() {
-
+this.loading = true;
     if(this.colisForm.valid) {
       this.colisService.createColis(this.colisForm.value).subscribe(
         () => {
@@ -59,7 +59,7 @@ export class AddEditColisComponent implements OnInit {
         },
         err => {
           this.errorMessage = "Une erreur est survenue lors de la création du colis";
-
+this.loading = false;
         }
       )
     } else {

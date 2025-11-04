@@ -1,29 +1,30 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ClientsService} from '../../../services/clients.service';
-import {Router} from '@angular/router';
-import {LivreursService} from '../../../services/livreurs.service';
 import {ErrorMessageComponent} from '../../../components/error-message/error-message.component';
 import {NgIf} from '@angular/common';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LivreursService} from '../../../services/livreurs.service';
 
 @Component({
-  selector: 'app-add-livreurs',
+  selector: 'app-edit-livreur',
   imports: [
     ErrorMessageComponent,
     NgIf,
     ReactiveFormsModule
   ],
-  templateUrl: './add-livreurs.component.html',
+  templateUrl: './edit-livreur.component.html',
 })
-export class AddLivreursComponent implements OnInit {
+export class EditLivreurComponent implements OnInit{
   livreurForm!: FormGroup;
+  livreurId!: any;
   errorMessage: string = '';
   loading = false;
 
   constructor(
     private fb: FormBuilder,
-    private livreursService: LivreursService,
-    private router: Router
+    private livreurService: LivreursService,
+    private router: Router,
+    private route:ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +34,27 @@ export class AddLivreursComponent implements OnInit {
       cni: ['', Validators.required],
       telephone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      adresse: ['', Validators.required]
+      adresse: ['', Validators.required],
+      statut: ['', Validators.required]
     });
+
+    this.livreurId = this.route.snapshot.paramMap.get('id');
+
+    this.livreurService.getLivreurById(this.livreurId).subscribe(
+      (client) => {
+        this.livreurForm.patchValue(
+          {
+            nom: client.nom,
+            prenom: client.prenom,
+            cni: client.cni,
+            telephone: client.telephone,
+            email: client.email,
+            adresse: client.adresse,
+            statut: client.statut
+          }
+        )
+      }
+    )
   }
 
   onSubmit(): void {
@@ -42,9 +62,8 @@ export class AddLivreursComponent implements OnInit {
       this.loading = true;
       this.errorMessage = '';
 
-      this.livreursService.createLivreur(this.livreurForm.value).subscribe({
+      this.livreurService.updateLivreur(this.livreurId, this.livreurForm.value).subscribe({
         next: (response) => {
-          console.log('Client créé avec succès', response);
           this.router.navigate(['/livreurs']);
         },
         error: (error) => {

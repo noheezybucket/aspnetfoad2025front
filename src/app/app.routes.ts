@@ -19,6 +19,7 @@ import {ListLivraisonsComponent} from './home/livraisons/list-livraisons/list-li
 import {DetailsLivraisonComponent} from './home/livraisons/details-livraison/details-livraison.component';
 import {EditColisComponent} from './home/colis/edit-colis/edit-colis.component';
 import {EditClientComponent} from './home/clients/edit-client/edit-client.component';
+import {EditLivreurComponent} from './home/livreurs/edit-livreur/edit-livreur.component';
 
 export const routes: Routes = [
   {
@@ -65,6 +66,7 @@ export const routes: Routes = [
         children:[
           { path:'list-livreurs', component: ListLivreursComponent },
           { path:'add-livreurs', component: AddLivreursComponent },
+          { path:'edit-livreur/:id', component: EditLivreurComponent },
           { path:'', redirectTo: 'list-livreurs', pathMatch: 'full' },
         ]
       },

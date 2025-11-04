@@ -56,6 +56,14 @@
       </label>
     </div>
 
-    <button type="submit" class="btn-primary">Créer</button>
+    <button type="submit"
+            [disabled]="loading"
+            class="btn-primary">
+      @if (loading) {
+        Requête en cours
+      } @else {
+        Créer un colis
+      }
+    </button>
   </form>
 </div>

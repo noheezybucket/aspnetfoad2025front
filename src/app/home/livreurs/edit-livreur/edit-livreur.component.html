@@ -1,6 +1,6 @@
 <div class="space-y-5">
 
-  <h2 class="text-2xl font-[500] mb-4">Créer un nouveau livreur</h2>
+  <h2 class="text-2xl font-[500] mb-4">Modifier un livreur</h2>
 
   <div *ngIf="errorMessage != ''" class="mb-5 w-full">
     <app-error-message [message]="errorMessage"/>
@@ -63,6 +63,14 @@
         ></textarea>
       </label>
 
+      <label class="flex flex-col">
+        <span>Statut *</span>
+        <select formControlName="statut">
+          <option value="Actif">Actif</option>
+          <option value="Inactif">Inactif</option>
+        </select>
+      </label>
+
     </div>
 
     <div class="flex gap-3 mt-5">
@@ -70,11 +78,12 @@
         type="submit"
         class="btn-primary"
         [disabled]="loading"
+
       >
         @if (loading) {
           Requête en cours
         } @else {
-          Créer le livreur
+          Modifier le livreur
         }
       </button>
       <button
