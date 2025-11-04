@@ -24,7 +24,7 @@ export class ListLivraisonsComponent implements OnInit {
   colisData!: any;
   livreursData!: any;
   livraisonsData!: any;
-  loading = false;
+  loading = true;
   errorMessage = "";
   livraisonForm =  new FormGroup({
     idColis : new FormControl("", [Validators.required]),
@@ -38,7 +38,6 @@ export class ListLivraisonsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loading = true;
     this.colisService.getAllColis().subscribe(
       res => {
         this.colisData = res.filter((colis:any) => colis.statutLivraison === 'En attente')

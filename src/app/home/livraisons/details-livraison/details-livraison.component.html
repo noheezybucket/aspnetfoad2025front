@@ -1,7 +1,7 @@
 @if (!loading) {
   <main class="space-y-5">
     <div class="space-y-3">
-      <div class="flex gap-2">
+      <div class="flex gap-2 items-center">
       <h2 class="text-2xl">Détails livraison #{{livraisonDetails.idLivraison}}</h2>
       <div>
         @if (livraisonDetails.statutLivraison === "Terminé") {
@@ -15,8 +15,10 @@
       </div>
       <div class="grid grid-cols-2">
         <ul>
-          <li><strong>Adresse de départ</strong> : {{livraisonDetails.adresseDepart}}</li>
-          <li><strong>Adresse d'arrivée</strong> : {{livraisonDetails.adresseArrivee}}</li>
+          <li><strong>Code colis</strong> : {{livraisonDetails.colis.codeColis}}</li>
+          <li><strong>Adresse de départ</strong> : {{livraisonDetails.colis.adresseDepart}}</li>
+          <li><strong>Adresse d'arrivée</strong> : {{livraisonDetails.colis.adresseArrivee}}</li>
+          <li><strong>Descripition colis</strong> : {{livraisonDetails.colis.description}}</li>
         </ul>
         <ul>
           <li><strong>Date de début</strong> : {{livraisonDetails.dateDebut | date:'yyyy-MM-dd à HH:mm:ss'}}</li>
@@ -25,25 +27,36 @@
       </div>
     </div>
     <div>
-      <h2 class="text-2xl">Détails livreur</h2>
+      <h2 class="text-2xl">Informations client</h2>
+      <div class="grid grid-cols-2">
+        <ul>
+          <li><strong>Nom complet</strong> : {{livraisonDetails.client.nom}} {{livraisonDetails.client.prenom}}</li>
+          <li><strong>N. Téléphone</strong> : {{livraisonDetails.client.telephone}}</li>
+          <li><strong>Adresse</strong> : {{livraisonDetails.client.adresse}}</li>
+        </ul>
+        <ul>
+          <li><strong>CNI</strong> : {{livraisonDetails.livreur.cni}}</li>
+          <li><strong>Date de fin</strong> : {{livraisonDetails.livreur.email}}</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-2xl">Infromations livreur</h2>
       <div class="grid grid-cols-2">
         <ul>
           <li><strong>Nom complet</strong> : {{livraisonDetails.livreur.nom}} {{livraisonDetails.livreur.prenom}}</li>
           <li><strong>N. Téléphone</strong> : {{livraisonDetails.livreur.telephone}}</li>
+          <li><strong>Adresse</strong> : {{livraisonDetails.livreur.adresse}}</li>
         </ul>
         <ul>
-          <li><strong>Date de début</strong> : {{livraisonDetails.dateDebut | date:'yyyy-MM-dd à HH:mm:ss'}}</li>
-          <li><strong>Date de fin</strong> : {{livraisonDetails.dateFin | date:'yyyy-MM-dd à HH:mm:ss'}}</li>
+          <li><strong>CNI</strong> : {{livraisonDetails.livreur.cni}}</li>
+          <li><strong>Date de fin</strong> : {{livraisonDetails.livreur.email}}</li>
         </ul>
       </div>
     </div>
   </main>
 } @else {
-  <div class="flex justify-center h-[100vh] items-center flex-col">
-    Chargement des données en cours
     <app-loading-spinner/>
-
-  </div>
 
 }
 
