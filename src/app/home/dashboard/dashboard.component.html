@@ -1,43 +1,197 @@
 <app-page-header title="Dalal ak jam 👋🏾"/>
 
 <div class="h-[85vh] space-y-10 overflow-y-scroll">
-  <div class="grid grid-cols-4 gap-10">
-    <div class="bg-indigo-600 dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-check-icon lucide-package-check"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
-      <span>
+  @if (loading) {
+    <div class="flex justify-center items-center h-64">
+      <app-loading-spinner/>
+    </div>
+  } @else if (statsData) {
+    <!-- Cartes de statistiques -->
+    <div class="grid grid-cols-4 gap-10">
+      <!-- Colis livrés -->
+      <div class="bg-indigo-600 dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-check-icon lucide-package-check"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
+        <span>
           <h2 class="text-xl">Colis livrés</h2>
-          <h2 class="text-3xl">18</h2>
+          <h2 class="text-3xl">{{statsData.colis.livre}}</h2>
         </span>
-    </div>
+      </div>
 
-    <div class="bg-indigo-600 dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-minus-icon lucide-package-minus"><path d="M16 16h6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
-      <span>
+      <!-- Colis en attente -->
+      <div class="bg-indigo-600 dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-minus-icon lucide-package-minus"><path d="M16 16h6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
+        <span>
           <h2 class="text-xl">Colis en attente</h2>
-          <h2 class="text-3xl">5</h2>
+          <h2 class="text-3xl">{{statsData.colis.enAttente}}</h2>
         </span>
-    </div>
+      </div>
 
-    <div class="bg-indigo-600 dark:bg-black/50  text-white p-4 rounded-lg flex gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
-      <span>
+      <!-- Clients -->
+      <div class="bg-indigo-600 dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+        <span>
           <h2 class="text-xl">Clients</h2>
-          <h2 class="text-3xl">25</h2>
+          <h2 class="text-3xl">{{statsData.clients.total}}</h2>
         </span>
-    </div>
+      </div>
 
-    <div class="bg-indigo-600  dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-motorbike-icon lucide-motorbike"><path d="m18 14-1-3"/><path d="m3 9 6 2a2 2 0 0 1 2-2h2a2 2 0 0 1 1.99 1.81"/><path d="M8 17h3a1 1 0 0 0 1-1 6 6 0 0 1 6-6 1 1 0 0 0 1-1v-.75A5 5 0 0 0 17 5"/><circle cx="19" cy="17" r="3"/><circle cx="5" cy="17" r="3"/></svg>
-      <span>
+      <!-- Livreurs actifs -->
+      <div class="bg-indigo-600 dark:bg-black/50 text-white p-4 rounded-lg flex gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-motorbike-icon lucide-motorbike"><path d="m18 14-1-3"/><path d="m3 9 6 2a2 2 0 0 1 2-2h2a2 2 0 0 1 1.99 1.81"/><path d="M8 17h3a1 1 0 0 0 1-1 6 6 0 0 1 6-6 1 1 0 0 0 1-1v-.75A5 5 0 0 0 17 5"/><circle cx="19" cy="17" r="3"/><circle cx="5" cy="17" r="3"/></svg>
+        <span>
           <h2 class="text-xl">Livreurs actifs</h2>
-          <h2 class="text-3xl">2</h2>
+          <h2 class="text-3xl">{{statsData.livreurs.actif}}</h2>
         </span>
+      </div>
     </div>
 
-  </div>
+    <!-- Graphiques statistiques -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <!-- Statut des Colis -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Statut des Colis</h2>
+        <div class="space-y-4">
+          <!-- En Attente -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">En Attente</span>
+              <span class="text-sm font-semibold text-orange-500">{{statsData.colis.enAttente}} ({{getPercentage(statsData.colis.enAttente, statsData.colis.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-orange-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.colis.enAttente, statsData.colis.total)"></div>
+            </div>
+          </div>
 
+          <!-- En Cours -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">En Cours</span>
+              <span class="text-sm font-semibold text-blue-500">{{statsData.colis.enCours}} ({{getPercentage(statsData.colis.enCours, statsData.colis.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-blue-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.colis.enCours, statsData.colis.total)"></div>
+            </div>
+          </div>
+
+          <!-- Livré -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Livré</span>
+              <span class="text-sm font-semibold text-green-500">{{statsData.colis.livre}} ({{getPercentage(statsData.colis.livre, statsData.colis.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-green-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.colis.livre, statsData.colis.total)"></div>
+            </div>
+          </div>
+
+          <!-- Annulé -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Annulé</span>
+              <span class="text-sm font-semibold text-red-500">{{statsData.colis.annule}} ({{getPercentage(statsData.colis.annule, statsData.colis.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-red-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.colis.annule, statsData.colis.total)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Colis -->
+        <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Total Colis</span>
+            <span class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{{statsData.colis.total}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statut des Livraisons -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Statut des Livraisons</h2>
+        <div class="space-y-4">
+          <!-- En Cours -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">En Cours</span>
+              <span class="text-sm font-semibold text-blue-500">{{statsData.livraisons.enCours}} ({{getPercentage(statsData.livraisons.enCours, statsData.livraisons.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-blue-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.livraisons.enCours, statsData.livraisons.total)"></div>
+            </div>
+          </div>
+
+          <!-- Terminée -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Terminée</span>
+              <span class="text-sm font-semibold text-green-500">{{statsData.livraisons.terminee}} ({{getPercentage(statsData.livraisons.terminee, statsData.livraisons.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-green-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.livraisons.terminee, statsData.livraisons.total)"></div>
+            </div>
+          </div>
+
+          <!-- Annulée -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Annulée</span>
+              <span class="text-sm font-semibold text-red-500">{{statsData.livraisons.annulee}} ({{getPercentage(statsData.livraisons.annulee, statsData.livraisons.total)}}%)</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div class="bg-red-500 h-3 rounded-full transition-all duration-500" [style.width.%]="getPercentage(statsData.livraisons.annulee, statsData.livraisons.total)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Livraisons -->
+        <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Total Livraisons</span>
+            <span class="text-2xl font-bold text-green-600 dark:text-green-400">{{statsData.livraisons.total}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Utilisateurs (Clients et Livreurs) -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Utilisateurs</h2>
+        <div class="space-y-6">
+          <!-- Clients -->
+          <div>
+            <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Clients</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <span class="text-sm text-gray-600 dark:text-gray-400">Actif</span>
+                <span class="font-semibold text-green-500 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded">{{statsData.clients.actif}}</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <span class="text-sm text-gray-600 dark:text-gray-400">Inactif</span>
+                <span class="font-semibold text-red-500 bg-red-100 dark:bg-red-900/30 px-3 py-1 rounded">{{statsData.clients.inactif}}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Livreurs -->
+          <div>
+            <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Livreurs</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <span class="text-sm text-gray-600 dark:text-gray-400">Actif</span>
+                <span class="font-semibold text-green-500 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded">{{statsData.livreurs.actif}}</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <span class="text-sm text-gray-600 dark:text-gray-400">Inactif</span>
+                <span class="font-semibold text-red-500 bg-red-100 dark:bg-red-900/30 px-3 py-1 rounded">{{statsData.livreurs.inactif}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Carte Leaflet -->
   <div class="grid grid-cols-1 gap-5">
-    <div id="map" style="height: 580px;width: 100%;" class="rounded-lg"></div>
+    <div id="map" style="height: 380px; width: 100%;" class="rounded-lg"></div>
   </div>
-
 </div>

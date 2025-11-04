@@ -38,11 +38,11 @@
             <td>{{colis.poids}}</td>
             <td>
               @if (colis.statutLivraison === "Livré") {
-                <span class="bg-green-500 p-1 rounded text-white">{{colis.statutLivraison}}</span>
+                <span class="bg-green-500 p-1 rounded text-white block">{{colis.statutLivraison}}</span>
               } @else if (colis.statutLivraison === "En cours") {
-                <span class="bg-orange-500 p-1 rounded text-white">{{colis.statutLivraison}}</span>
+                <span class="bg-orange-500 p-1 rounded text-white block">{{colis.statutLivraison}}</span>
               } @else {
-              <span class="bg-red-500 p-1 rounded text-white">{{colis.statutLivraison}}</span>
+              <span class="bg-red-500 p-1 rounded text-white block">{{colis.statutLivraison}}</span>
               }
             </td>
             <td>
